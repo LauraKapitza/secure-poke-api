@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "SecurePokeAPI",
+    "description": "Postman collection for SecurePokeAPI endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Group",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/group/:pokemon_type/add/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1:8000"
+          ],
+          "path": [
+            "api",
+            "group",
+            ":pokemon_type",
+            "add",
+            ""
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "pokemon_type",
+              "value": "water"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/login/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1:8000"
+          ],
+          "path": [
+            "api",
+            "login",
+            ""
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"test\",\n  \"password\": \"test\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Remove Group",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/group/:pokemon_type/remove/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1:8000"
+          ],
+          "path": [
+            "api",
+            "group",
+            ":pokemon_type",
+            "remove",
+            ""
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "pokemon_type",
+              "value": "fire"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "User Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/user/me/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1:8000"
+          ],
+          "path": [
+            "api",
+            "user",
+            "me",
+            ""
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
