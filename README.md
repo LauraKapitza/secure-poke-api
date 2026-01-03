@@ -17,13 +17,13 @@ Users must log in and join Pokémon type groups to access Pokémon data.
     On Windows:
     ```bash
     python -m venv venv
-    venv\Scripts\activate
+    source venv\venv\Scripts\activate
     ```
 
     On Linux/Mac:
     ```bash
     python -m venv venv
-    source venv/bin/activate
+    source venv/bin/activate # for Git Bash
     ```
 
 3. Install dependencies
