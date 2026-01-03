@@ -75,3 +75,15 @@ and run the requests in order:
 1. Login, then copy token
 2. Set token in Authorization tab (Bearer Token)
 3. Call `/user/me`, `/group/<pokemon_type>/add`, etc.
+
+## Run tests
+
+From the project root, execute the following command to run the tests for the Access Management API:
+```bash
+python manage.py test access_management_api
+```
+
+To run all tests from secure poke api project, use the following command:
+```bash
+python manage.py test
+```
