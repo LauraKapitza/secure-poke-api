@@ -6,6 +6,8 @@ from .models import PokemonTypeGroup
 from .serializers import UserSerializer
 from django.contrib.auth import get_user_model
 
+from .utils.pokemon_types import POKEMON_TYPES
+
 User = get_user_model()
 
 
@@ -23,8 +25,16 @@ class AddGroupView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pokemon_type):
+        pokemon_type = pokemon_type.lower()
+
+        if pokemon_type not in POKEMON_TYPES:
+            return Response(
+                {"error": f"Invalid Pokémon type '{pokemon_type}'"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
         user = request.user
-        group, created = PokemonTypeGroup.objects.get_or_create(name=pokemon_type)
+        group, _created = PokemonTypeGroup.objects.get_or_create(name=pokemon_type)
         user.pokemon_groups.add(group)
         return Response(
             {"message": f"Added {pokemon_type} group"},
@@ -43,7 +53,7 @@ class RemoveGroupView(APIView):
             group = PokemonTypeGroup.objects.get(name=pokemon_type)
             user.pokemon_groups.remove(group)
             return Response(
-                { "message": f"Removed {pokemon_type} group"},
+                {"message": f"Removed {pokemon_type} group"},
                 status=status.HTTP_200_OK
             )
         except PokemonTypeGroup.DoesNotExist:

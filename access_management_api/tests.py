@@ -3,6 +3,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from access_management_api.models import PokemonTypeGroup
+from unittest.mock import patch
 
 User = get_user_model()
 
@@ -85,7 +86,8 @@ class AccountsAPITest(APITestCase):
     # ADD POKEMON GROUP TESTS
     # -----------------------------
 
-    def test_add_group(self):
+    @patch("access_management_api.utils.pokemon_types.POKEMON_TYPES", {"fire", "water"})
+    def test_add_group_valid_type(self):
         self.authenticate()
         url = reverse("add_group", kwargs={"pokemon_type": "fire"})
         response = self.client.post(url)
