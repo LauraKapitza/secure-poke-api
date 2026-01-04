@@ -5,14 +5,16 @@ from rest_framework.permissions import IsAuthenticated
 from .models import PokemonTypeGroup
 from .serializers import UserSerializer
 from django.contrib.auth import get_user_model
-
-from .utils.pokemon_types import POKEMON_TYPES
+from access_management_api.utils.load_pokemon_types import load_pokemon_types
 
 User = get_user_model()
 
 
-# GET /api/user/me
 class MeView(generics.RetrieveAPIView):
+    """
+        GET /api/user/me
+        Gets current user with their Pokémon type groups.
+    """
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
@@ -20,16 +22,20 @@ class MeView(generics.RetrieveAPIView):
         return self.request.user
 
 
-# POST /api/group/<pokemon_type>/add
 class AddGroupView(APIView):
+    """
+        POST /api/group/<pokemon_type>/add
+        Adds a valid Pokémon type group to user.
+    """
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pokemon_type):
         pokemon_type = pokemon_type.lower()
+        allowed_types = load_pokemon_types()
 
-        if pokemon_type not in POKEMON_TYPES:
+        if pokemon_type not in allowed_types:
             return Response(
-                {"error": f"Invalid Pokémon type '{pokemon_type}'"},
+                {"error": f"Invalid Pokémon type: '{pokemon_type}'"},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -42,9 +48,12 @@ class AddGroupView(APIView):
         )
 
 
-# POST /api/group/<pokemon_type>/remove
-# Since the action only removes a group from the current user and not a deletion, the endpoint is a POST
 class RemoveGroupView(APIView):
+    """
+        POST /api/group/<pokemon_type>/remove
+        Removes a Pokémon type group from user.
+        Since the action only removes a group from the current user and not a deletion, the endpoint is a POST.
+    """
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pokemon_type):

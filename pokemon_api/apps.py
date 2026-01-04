@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AccountsConfig(AppConfig):
+class PokemonApiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'access_management_api'
+    name = 'pokemon_api'

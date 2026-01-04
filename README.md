@@ -70,7 +70,7 @@ Users must log in and join Pokémon type groups to access Pokémon data.
    
 ## Testing endpoints
 
-A Postman collection is included (`SecurePokeAPI.postman_collection.json`). Import it into Postman (or another API platform)
+A Postman collection is included (`secure_poke_api_collection.json`). Import it into Postman (or another API platform)
 and run the requests in order:
 1. Login, then copy token
 2. Set token in Authorization tab (Bearer Token)
@@ -87,3 +87,9 @@ To run all tests from secure poke api project, use the following command:
 ```bash
 python manage.py test
 ```
+
+## Reflections
+
+- using pytest for test files
+- using postgresql as database for storing data
+- storing pokemon types into d, and adding a cron job for updating the content (once a while)

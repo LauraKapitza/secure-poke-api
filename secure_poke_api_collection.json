@@ -9,14 +9,7 @@
       "name": "Add Group",
       "request": {
         "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token}}",
-            "disabled": false,
-            "type": "default"
-          }
-        ],
+        "header": [],
         "auth": {
           "type": "noauth"
         },
@@ -41,7 +34,7 @@
           "variable": [
             {
               "key": "pokemon_type",
-              "value": "water"
+              "value": "ice"
             }
           ]
         }
@@ -51,14 +44,7 @@
       "name": "Login",
       "request": {
         "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "disabled": false,
-            "type": "default"
-          }
-        ],
+        "header": [],
         "auth": {
           "type": "noauth"
         },
@@ -82,7 +68,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"test\",\n  \"password\": \"test\"\n}",
+          "raw": "{\n  \"username\": \"test\",\n  \"password\": \"test2test!\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -95,14 +81,7 @@
       "name": "Remove Group",
       "request": {
         "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token}}",
-            "disabled": false,
-            "type": "default"
-          }
-        ],
+        "header": [],
         "auth": {
           "type": "noauth"
         },
@@ -127,7 +106,7 @@
           "variable": [
             {
               "key": "pokemon_type",
-              "value": "fire"
+              "value": "water"
             }
           ]
         }
@@ -137,14 +116,7 @@
       "name": "User Me",
       "request": {
         "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token}}",
-            "disabled": false,
-            "type": "default"
-          }
-        ],
+        "header": [],
         "auth": {
           "type": "noauth"
         },
@@ -166,6 +138,67 @@
           ],
           "query": [],
           "variable": []
+        }
+      }
+    },
+    {
+      "name": "Get Pokémon By Type",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/pokemon/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1:8000"
+          ],
+          "path": [
+            "api",
+            "pokemon",
+            ""
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "Get Prokémon List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/pokemon/:identifier",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1:8000"
+          ],
+          "path": [
+            "api",
+            "pokemon",
+            ":identifier"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "identifier",
+              "value": "abomasnow"
+            }
+          ]
         }
       }
     }
