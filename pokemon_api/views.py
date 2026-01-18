@@ -23,20 +23,20 @@ class PokemonListView(APIView):
             return Response([], status=status.HTTP_200_OK)
 
         # Collect Pokémon from all allowed types
-        pokemon_set = {}
+        pokemon_dict = {}
 
         for pokemon_type in allowed_types:
             pokemon_entries = fetch_pokemon_by_type(pokemon_type)
 
             for entry in pokemon_entries:
                 name = entry["name"]
-                pokemon_set[name] = {
+                pokemon_dict[name] = {
                     "name": name,
                     "url": f"/api/pokemon/{name}/"
                 }
 
         # Convert dict to list
-        pokemon_list = list(pokemon_set.values())
+        pokemon_list = list(pokemon_dict.values())
 
         return Response(pokemon_list, status=status.HTTP_200_OK)
 
@@ -67,7 +67,8 @@ class PokemonDetailView(APIView):
             for t in pokemon_data.get("types", [])
         }
 
-        # Check access
+        # Check the types of this Pokémon against the types the user is allowed to see.
+        # If there is zero overlap, stop them right here with a 403 Forbidden error.
         if not (pokemon_types & allowed_types):
             return Response(
                 {"error": "Forbidden: you do not have access to this Pokémon"},
