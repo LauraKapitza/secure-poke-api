@@ -1,13 +1,13 @@
 from unittest.mock import patch, MagicMock
 from django.test import TestCase
 
-from pokemon_api.utils.fetch_pokemon import fetch_pokemon
-from pokemon_api.utils.fetch_pokemon_by_type import fetch_pokemon_by_type
+from pokemon_api.services.fetch_pokemon import fetch_pokemon
+from pokemon_api.services.fetch_pokemon_by_type import fetch_pokemon_by_type
 
 
 class FetchPokemonTest(TestCase):
 
-    @patch("pokemon_api.utils.fetch_pokemon.requests.get")
+    @patch("pokemon_api.services.fetch_pokemon.requests.get")
     def test_fetch_pokemon_success(self, mock_get):
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -19,7 +19,7 @@ class FetchPokemonTest(TestCase):
         self.assertEqual(result, {"name": "pikachu"})
         mock_get.assert_called_once_with("https://pokeapi.co/api/v2/pokemon/pikachu/")
 
-    @patch("pokemon_api.utils.fetch_pokemon.requests.get")
+    @patch("pokemon_api.services.fetch_pokemon.requests.get")
     def test_fetch_pokemon_not_found(self, mock_get):
         mock_response = MagicMock()
         mock_response.status_code = 404
@@ -29,7 +29,7 @@ class FetchPokemonTest(TestCase):
 
         self.assertIsNone(result)
 
-    @patch("pokemon_api.utils.fetch_pokemon.requests.get")
+    @patch("pokemon_api.services.fetch_pokemon.requests.get")
     def test_fetch_pokemon_server_error(self, mock_get):
         mock_response = MagicMock()
         mock_response.status_code = 500
@@ -42,7 +42,7 @@ class FetchPokemonTest(TestCase):
 
 class FetchPokemonByTypeTest(TestCase):
 
-    @patch("pokemon_api.utils.fetch_pokemon_by_type.requests.get")
+    @patch("pokemon_api.services.fetch_pokemon_by_type.requests.get")
     def test_fetch_pokemon_by_type_success(self, mock_get):
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -65,7 +65,7 @@ class FetchPokemonByTypeTest(TestCase):
         )
         mock_get.assert_called_once_with("https://pokeapi.co/api/v2/type/fire/")
 
-    @patch("pokemon_api.utils.fetch_pokemon_by_type.requests.get")
+    @patch("pokemon_api.services.fetch_pokemon_by_type.requests.get")
     def test_fetch_pokemon_by_type_not_found(self, mock_get):
         mock_response = MagicMock()
         mock_response.status_code = 404
@@ -75,7 +75,7 @@ class FetchPokemonByTypeTest(TestCase):
 
         self.assertEqual(result, [])
 
-    @patch("pokemon_api.utils.fetch_pokemon_by_type.requests.get")
+    @patch("pokemon_api.services.fetch_pokemon_by_type.requests.get")
     def test_fetch_pokemon_by_type_empty_list(self, mock_get):
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -86,7 +86,7 @@ class FetchPokemonByTypeTest(TestCase):
 
         self.assertEqual(result, [])
 
-    @patch("pokemon_api.utils.fetch_pokemon_by_type.requests.get")
+    @patch("pokemon_api.services.fetch_pokemon_by_type.requests.get")
     def test_fetch_pokemon_by_type_missing_key(self, mock_get):
         mock_response = MagicMock()
         mock_response.status_code = 200

@@ -3,8 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from pokemon_api.utils.fetch_pokemon import fetch_pokemon
-from pokemon_api.utils.fetch_pokemon_by_type import fetch_pokemon_by_type
+from pokemon_api.services.fetch_pokemon import fetch_pokemon
+from pokemon_api.services.fetch_pokemon_by_type import fetch_pokemon_by_type
 
 
 class PokemonListView(APIView):

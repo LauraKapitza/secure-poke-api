@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import PokemonTypeGroup
 from .serializers import UserSerializer
 from django.contrib.auth import get_user_model
-from access_management_api.utils.load_pokemon_types import load_pokemon_types
+from access_management_api.services.load_pokemon_types import load_pokemon_types
 
 User = get_user_model()
 

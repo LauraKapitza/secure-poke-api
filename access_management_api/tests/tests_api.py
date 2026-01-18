@@ -86,7 +86,7 @@ class AccountsAPITest(APITestCase):
     # ADD POKEMON GROUP TESTS
     # -----------------------------
 
-    @patch("access_management_api.utils.load_pokemon_types.POKEMON_TYPES", {"fire", "water"})
+    @patch("access_management_api.services.load_pokemon_types.POKEMON_TYPES", {"fire", "water"})
     def test_add_group_valid_type(self):
         self.authenticate()
         url = reverse("add_group", kwargs={"pokemon_type": "fire"})
