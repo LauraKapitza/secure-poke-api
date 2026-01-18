@@ -221,9 +221,13 @@ Migrating the test suite would make it more maintainable and expressive.
 SQLite is fine for development, but PostgreSQL provides better performance, 
 concurrency handling, and indexing for production environments.
 
-### Storing Pokémon types in the database
-Instead of fetching types from PokeAPI at runtime, storing them in the database would make the system more stable. 
-A scheduled job could refresh the list periodically.
+### Using a Static Pokémon Type List vs. Database Storage
+
+Currently, the system fetches types from the PokéAPI at runtime. 
+However, Pokémon types rarely change, making a regular scheduled sync unnecessary. Two better alternatives include:
+
+- Static List: Using a hardcoded list within the application code. This is sufficient given the infrequent updates to the Pokémon franchise and would significantly reduce external API overhead.
+- Database Storage: Storing types in a local database table. This provides the best stability and allows for relational integrity within the app. A management command could be implemented to allow administrators to manually refresh the type list whenever a new generation of Pokémon is released.
 
 ### Implementing OpenAPI documentation
 
